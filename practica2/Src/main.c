@@ -1,7 +1,7 @@
 /**
  ******************************************************************************
  * @file    main.c
- * @author  Marco Rolon
+ * @author 	Marco Rolon
  * @author	Lucas Meoli
  * @brief   Practica 2
  ******************************************************************************
@@ -27,7 +27,7 @@ static tick_t 	ledPattern[] =
 	LED_PATTERN_PERIOD_100_MS
 };
 
-uint32_t ledPatternSize = sizeof(ledPattern)/sizeof(tick_t);
+static const uint8_t ledPatternSize = sizeof(ledPattern)/sizeof(tick_t);
 
 /* Private function prototypes -----------------------------------------------*/
 
@@ -58,7 +58,7 @@ int main(void)
 	BSP_LED_Init(LED1);
 
 	/* Initialize LED timer in 1 second */
-	delayInit(&timer_LED1, LED_PATTERN_PERIOD_100_MS);
+	delayInit(&timer_LED1, LED_PATTERN_PERIOD_1000_MS);
 
 	/* Infinite loop */
 	while (1)
