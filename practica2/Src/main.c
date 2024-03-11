@@ -12,10 +12,23 @@
 
 /* Private typedef -----------------------------------------------------------*/
 /* Private define ------------------------------------------------------------*/
-#define PERIOD_100_MS	  	100
+#define LED_PATTERN_PERIOD_100_MS	  	100
+#define LED_PATTERN_PERIOD_500_MS	  	500
+#define LED_PATTERN_PERIOD_1000_MS	  	1000
+
+#define LED_TOGGLE_LIMIT				10
 
 /* Private macro -------------------------------------------------------------*/
 /* Private variables ---------------------------------------------------------*/
+static tick_t 	ledPattern[] =
+{
+	LED_PATTERN_PERIOD_1000_MS,
+	LED_PATTERN_PERIOD_500_MS,
+	LED_PATTERN_PERIOD_100_MS
+};
+
+uint32_t ledPatternSize = sizeof(ledPattern)/sizeof(tick_t);
+
 /* Private function prototypes -----------------------------------------------*/
 
 static void SystemClock_Config(void);
@@ -30,7 +43,9 @@ static void Error_Handler(void);
  */
 int main(void)
 {
-	delay_t timer_LED1;
+	delay_t timer_LED1 		= {.startTime = 0, .duration = 0, .running = false};
+	uint8_t ledToggleIndex	= 0;
+	uint8_t ledPatternIndex	= 0;
 
 	/* STM32F4xx HAL library initialization
 	 */
@@ -43,16 +58,31 @@ int main(void)
 	BSP_LED_Init(LED1);
 
 	/* Initialize LED timer in 1 second */
-	delayInit(&timer_LED1, PERIOD_100_MS);
+	delayInit(&timer_LED1, LED_PATTERN_PERIOD_100_MS);
 
 	/* Infinite loop */
 	while (1)
 	{
+		/* Part 2
 		if(delayRead(&timer_LED1))
 		{
 		  BSP_LED_Toggle(LED1);
-		  delayInit(&timer_LED1, PERIOD_100_MS);
+		  delayInit(&timer_LED1, LED_PATTERN_PERIOD_100_MS);
 		}
+		*/
+
+		/* Part 3*/
+	  	if (delayRead(&timer_LED1))
+	  	{
+			BSP_LED_Toggle(LED1); // toggle led
+
+			ledToggleIndex = (ledToggleIndex+1)%LED_TOGGLE_LIMIT; // update and check toggle index value
+			if(!ledToggleIndex)
+			{
+				ledPatternIndex = (ledPatternIndex+1)%ledPatternSize;
+				delayWrite(&timer_LED1,ledPattern[ledPatternIndex]); // update pattern
+			}
+	  	}
 	}
 }
 
