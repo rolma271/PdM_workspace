@@ -3416,10 +3416,10 @@ __weak uint32_t HAL_RCC_GetSysClockFreq(void)
  800168c:	007a1200 	.word	0x007a1200
 
 08001690 <main>:
- * @brief  Main program
- * @param  None
- * @retval None
- */
+
+/* Private functions ---------------------------------------------------------*/
+
+
 int main(void)
 {
  8001690:	b580      	push	{r7, lr}

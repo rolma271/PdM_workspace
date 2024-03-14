@@ -3,7 +3,7 @@
  * @file    main.c
  * @author 	Marco Rolon
  * @author	Lucas Meoli
- * @brief   Practica 2
+ * @brief   Practica 2 - PdM CESE22
  ******************************************************************************
  */
 
@@ -36,11 +36,7 @@ static void Error_Handler(void);
 
 /* Private functions ---------------------------------------------------------*/
 
-/**
- * @brief  Main program
- * @param  None
- * @retval None
- */
+
 int main(void)
 {
 	delay_t timer_LED1 		= {.startTime = 0, .duration = 0, .running = false};

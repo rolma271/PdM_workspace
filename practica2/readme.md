@@ -1,3 +1,4 @@
-# Practica 2 
-## PdM - CESE22
-## Marco Rolon
+# Practica 2 de PdM
+Desarrollo de delays no bloqueantes
+
+Autor: Marco Rolon

@@ -58,10 +58,29 @@ delay_t;
  * Delay prototypes
  */
 
+/**
+ * @brief  Parameters initialization
+ * @param  delay Delay structure
+ * @param  duration Delay duration
+ * @retval None
+ */
 void delayInit(delay_t * delay, tick_t duration);
 
+/**
+ * @brief  Check whether the time delay condition is met
+ * @param  delay Pointer to the delay structure
+ * @param  duration Delay duration
+ * @retval True if delay condition is met
+ *
+ */
 bool_t delayRead(delay_t * delay);
 
+/**
+ * @brief  Parameters initialisation
+ * @param  delay Pointer to the delay structure
+ * @param  duration Delay duration
+ * @retval None
+ */
 void delayWrite(delay_t * delay, tick_t duration);
 
 #endif /* __MAIN_H */
