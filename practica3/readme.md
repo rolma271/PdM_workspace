@@ -1,4 +1,4 @@
-# Practica 2 de PdM
-Desarrollo de delays no bloqueantes
+# Practica 3 de PdM
+Desarrollo modular de delays no bloqueantes
 
 Autor: Marco Rolon
