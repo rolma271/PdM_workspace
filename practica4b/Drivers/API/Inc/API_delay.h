@@ -55,7 +55,7 @@ void delayInit(delay_t * delay, tick_t duration);
 bool_t delayRead(delay_t * delay);
 
 /**
- * @brief  Write a new duration por the delay's period
+ * @brief  Write a new delay's duration
  * @param  delay Pointer to the delay structure
  * @param  duration Delay duration
  * @retval None

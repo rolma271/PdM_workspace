@@ -2,7 +2,7 @@
  ******************************************************************************
  * @file    main.c
  * @author 	Marco Rolon
- * @brief   Practica 3 - PdM CESE22
+ * @brief   Practica 4 - PdM CESE22
  ******************************************************************************
  */
 
@@ -13,15 +13,6 @@
 #include "../Drivers/API/Inc/API_debounce.h"
 
 /* Private typedef -----------------------------------------------------------*/
-//typedef enum
-//{
-//	BUTTON_UP,
-//	BUTTON_FALLING,
-//	BUTTON_DOWN,
-//	BUTTON_RAISING,
-//}
-//debounceState_t;
-
 typedef enum
 {
 	BUTTON_RELEASED,
@@ -37,22 +28,15 @@ buttonState_t;
 
 /* Private macro -------------------------------------------------------------*/
 /* Private variables ---------------------------------------------------------*/
-
-//static debounceState_t debounceState;
 static buttonState_t buttonState = BUTTON_RELEASED;
 
 delay_t timer_LED1 		= {.startTime = 0, .duration = 0, .running = false};
 
 /* Private functions ---------------------------------------------------------*/
 
-//static void debounceFSM_init();
-//static void debounceFSM_update();
-//
-//static void buttonPressed();
-//static void buttonReleased();
-
 static void buttonFSM_update();
 static void SystemClock_Config(void);
+
 static void Error_Handler(void);
 
 int main(void)
@@ -98,7 +82,7 @@ static void buttonFSM_update()
 				delayWrite(&timer_LED1, LED_BUTTON_PRESSED_TIME_MS);
 				buttonState = BUTTON_PRESSED;
 
-				toggleCounter=0;
+				toggleCounter = 0;
 			}
 			break;
 
@@ -118,82 +102,6 @@ static void buttonFSM_update()
 	}
 
 }
-
-
-
-
-//static void debounceFSM_init()
-//{
-//	debounceState = BUTTON_UP;
-//}
-//
-//static void debounceFSM_update()
-//{
-//	switch(debounceState)
-//	{
-//		case BUTTON_UP:
-//			if(BSP_PB_GetState(BUTTON_USER))
-//			{
-//				debounceState = BUTTON_FALLING;
-//				delayRead(&timer_LED1);
-//			}
-//			break;
-//
-//		case BUTTON_FALLING:
-//			if (delayRead(&timer_LED1))
-//			{
-//				if(BSP_PB_GetState(BUTTON_USER))
-//				{
-//					buttonPressed();
-//					debounceState = BUTTON_DOWN;
-//				}
-//				else
-//				{
-//					debounceState = BUTTON_UP;
-//				}
-//			}
-//			break;
-//
-//		case BUTTON_DOWN:
-//			if(!BSP_PB_GetState(BUTTON_USER))
-//			{
-//				debounceState = BUTTON_RAISING;
-//				delayRead(&timer_LED1);
-//			}
-//			break;
-//
-//		case BUTTON_RAISING:
-//			if (delayRead(&timer_LED1))
-//			{
-//				if(!BSP_PB_GetState(BUTTON_USER))
-//				{
-//					buttonReleased();
-//					debounceState = BUTTON_UP;
-//				}
-//				else
-//				{
-//					debounceState = BUTTON_DOWN;
-//				}
-//			}
-//			break;
-//
-//		default:
-//			// TODO error handler
-//			debounceState = BUTTON_UP;
-//			break;
-//	}
-//}
-
-//static void buttonPressed()
-//{
-//	BSP_LED_On(LED1);
-//}
-//
-//static void buttonReleased()
-//{
-//	BSP_LED_Off(LED1);
-//}
-
 
 /**
  * System

@@ -1,8 +1,9 @@
-/*
- * API_debounce.h
- *
- *  Created on: Mar 21, 2024
- *      Author: rolma
+/**
+ ******************************************************************************
+ * @file    API_debounce.c
+ * @author 	Marco Rolon
+ * @brief   Practica 4 - PdM CESE22
+ ******************************************************************************
  */
 
 #ifndef API_INC_API_DEBOUNCE_H_
@@ -14,24 +15,23 @@
 typedef bool 		bool_t;
 
 /**
- *
+ * Debounce prototypes
  */
 
 /**
- *
+ * @brief  Debounce FSM initialization
  */
 void debounceFSM_init();
 
 /**
- *
+ * @brief  Debounce FSM update
  */
 void debounceFSM_update();
 
 /**
- *
- */
+ * @brief 	Check the key status
+ * @retval 	It returns true (once) if the button was pressed
+ * */
 bool_t readKey();
-
-
 
 #endif /* API_INC_API_DEBOUNCE_H_ */

@@ -1,21 +1,21 @@
-/*
- * API_debounce.c
- *
- *  Created on: Mar 21, 2024
- *      Author: rolma
+/**
+ ******************************************************************************
+ * @file    API_debounce.c
+ * @author 	Marco Rolon
+ * @brief   Practica 4 - PdM CESE22
+ ******************************************************************************
  */
+//* Includes ------------------------------------------------------------------*/
 #include "../../../Drivers/API/Inc/API_debounce.h"
 #include "../../../Drivers/API/Inc/API_delay.h"
 #include <stdio.h>
 #include "stm32f4xx_hal.h"  		/* <- HAL include */
 #include "stm32f4xx_nucleo_144.h" 	/* <- BSP include */
 
-
+/* Private define ------------------------------------------------------------*/
 #define DEBOUNCE_TICK_MS	  	40
 
-/**
- *
- */
+/* Private typedef -----------------------------------------------------------*/
 typedef enum
 {
 	BUTTON_UP,
@@ -25,20 +25,15 @@ typedef enum
 }
 debounceState_t;
 
-/**
- *
- */
-static debounceState_t debounceState;
-static bool_t buttonIsPressed;
+/* Private variables ---------------------------------------------------------*/
+static debounceState_t  debounceState	= BUTTON_UP;
+static bool_t 			buttonIsPressed	= false;
 
-delay_t timerDebounce 		= {.startTime = 0, .duration = 0, .running = false};
+delay_t timerDebounce 	= {.startTime = 0, .duration = 0, .running = false};
 
 
 void debounceFSM_init()
 {
-	debounceState = BUTTON_UP;
-	buttonIsPressed = false;
-
 	delayInit(&timerDebounce, DEBOUNCE_TICK_MS);
 }
 
