@@ -21,7 +21,15 @@ static const char config[] = "\n\rUART config: 9600bps 8N1\n\r";
 
 /* Private function prototypes -----------------------------------------------*/
 
+/**
+ * @brief Prints UART config
+ */
 static void uartPrintConfig();
+
+/**
+ * @brief UART error handler
+ */
+static void uartErrorHandler();
 
 #ifdef __GNUC__
 /* With GCC, small printf (option LD Linker->Libraries->Small printf
@@ -43,7 +51,6 @@ bool_t uartInit()
 	  - BaudRate    = 9600 baud
 	  - Hardware flow control disabled (RTS and CTS signals) */
 	UartHandle.Instance        = USARTx;
-
 	UartHandle.Init.BaudRate   = 9600;
 	UartHandle.Init.WordLength = UART_WORDLENGTH_8B;
 	UartHandle.Init.StopBits   = UART_STOPBITS_1;
@@ -53,37 +60,53 @@ bool_t uartInit()
 	UartHandle.Init.OverSampling = UART_OVERSAMPLING_16;
 	if (HAL_UART_Init(&UartHandle) != HAL_OK)
 	{
-	/* Initialization Error */
-	//Error_Handler();
+		uartErrorHandler();
+		return false;
 	}
-
-	/* Output a message on Hyperterminal using printf function */
-
-
-	uartPrintConfig();
-
-	return false;
+	else
+	{
+		uartPrintConfig();
+		return true;
+	}
 }
 
 void uartSendString(uint8_t * pstring)
 {
-	HAL_UART_Transmit(&UartHandle, pstring, strlen((const char *)pstring), UART_TX_TIMEOUT);
+	if( HAL_UART_Transmit(&UartHandle, pstring, strlen((const char *)pstring), UART_TX_TIMEOUT)!= HAL_OK)
+	{
+		uartErrorHandler();
+	}
 }
 
 void uartSendStringSize(uint8_t * pstring, uint16_t size)
 {
-	HAL_UART_Transmit(&UartHandle, pstring, size, UART_TX_TIMEOUT);
+	if( HAL_UART_Transmit(&UartHandle, pstring, size, UART_TX_TIMEOUT)!= HAL_OK)
+	{
+		uartErrorHandler();
+	}
 }
 
 void uartReceiveStringSize(uint8_t * pstring, uint16_t size)
 {
-	HAL_UART_Receive(&UartHandle, pstring, size, UART_RX_TIMEOUT);
+	if( HAL_UART_Receive(&UartHandle, pstring, size, UART_RX_TIMEOUT)!= HAL_OK)
+	{
+		uartErrorHandler();
+	}
 }
 
 static void uartPrintConfig()
 {
 	uartSendString((uint8_t*)motd);
 	uartSendString((uint8_t*)config);
+}
+
+static void uartErrorHandler()
+{
+	/* Turn LED2 on */
+	BSP_LED_On(LED2);
+	while (1)
+	{
+	}
 }
 
 /**
