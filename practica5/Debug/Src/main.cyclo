@@ -1,0 +1,5 @@
+../Src/main.c:45:5:main	1
+../Src/main.c:74:13:buttonFSM_update	7
+../Src/main.c:114:13:buttonEvent_Print	1
+../Src/main.c:123:13:SystemClock_Config	4
+../Src/main.c:175:13:Error_Handler	1
