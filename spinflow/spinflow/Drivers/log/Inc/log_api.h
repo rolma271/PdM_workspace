@@ -23,11 +23,10 @@
  */
 typedef enum
 {
-    LOG_APP_INFO,       /**< Indicates an informational message from the application. */
-    LOG_APP_ERROR,      /**< Indicates an error message specific to the application. */
-    LOG_SYSTEM_ERROR    /**< Indicates an error message related to the system operations. */
-}
-logType_t;
+	LOG_APP_INFO, /**< Indicates an informational message from the application. */
+	LOG_APP_ERROR, /**< Indicates an error message specific to the application. */
+	LOG_SYSTEM_ERROR /**< Indicates an error message related to the system operations. */
+} logType_t;
 
 /**
  * @brief Initializes the logging system.
@@ -38,7 +37,6 @@ logType_t;
  * @return bool_t Returns true if initialization was successful, false otherwise.
  */
 bool_t log_Init();
-
 
 /**
  * @brief Sends a string to the logging system.
@@ -53,6 +51,6 @@ bool_t log_Init();
  *
  * @return bool_t Returns true if initialization was successful, false otherwise.
  */
-bool_t log_SendString(logType_t logType, char * pstring);
+bool_t log_SendString(logType_t logType, char *pstring);
 
 #endif /* LOG_INC_LOG_API_H_ */

@@ -27,11 +27,10 @@
  */
 typedef struct
 {
-    int16_t ax; /**< Acceleration along the X-axis. */
-    int16_t ay; /**< Acceleration along the Y-axis. */
-    int16_t az; /**< Acceleration along the Z-axis. */
-}
-acc_t;
+	int16_t ax; /**< Acceleration along the X-axis. */
+	int16_t ay; /**< Acceleration along the Y-axis. */
+	int16_t az; /**< Acceleration along the Z-axis. */
+} acc_t;
 
 /**
  * @typedef temp_t
@@ -51,11 +50,10 @@ typedef int16_t temp_t;
  */
 typedef struct
 {
-    int16_t gx; /**< Angular velocity along the X-axis. */
-    int16_t gy; /**< Angular velocity along the Y-axis. */
-    int16_t gz; /**< Angular velocity along the Z-axis. */
-}
-gyro_t;
+	int16_t gx; /**< Angular velocity along the X-axis. */
+	int16_t gy; /**< Angular velocity along the Y-axis. */
+	int16_t gz; /**< Angular velocity along the Z-axis. */
+} gyro_t;
 
 /**
  * @struct magn_t
@@ -66,11 +64,10 @@ gyro_t;
  */
 typedef struct
 {
-    int16_t mx; /**< Magnetic field strength along the X-axis. */
-    int16_t my; /**< Magnetic field strength along the Y-axis. */
-    int16_t mz; /**< Magnetic field strength along the Z-axis. */
-}
-magn_t;
+	int16_t mx; /**< Magnetic field strength along the X-axis. */
+	int16_t my; /**< Magnetic field strength along the Y-axis. */
+	int16_t mz; /**< Magnetic field strength along the Z-axis. */
+} magn_t;
 
 /**
  * @brief Initializes the IMU port.

@@ -51,5 +51,4 @@ void npx_SetPositive();
  */
 void npx_SetNegative();
 
-
 #endif

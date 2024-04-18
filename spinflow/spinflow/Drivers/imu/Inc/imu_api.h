@@ -30,10 +30,9 @@
  */
 typedef enum
 {
-    IMU_IDLE,    /**< IMU is in idle state, but actively measuring. */
-    IMU_ACTIVE   /**< IMU is active and taking measurements. */
-}
-imuState_t;
+	IMU_IDLE, /**< IMU is in idle state, but actively measuring. */
+	IMU_ACTIVE /**< IMU is active and taking measurements. */
+} imuState_t;
 
 /**
  * @enum imuSpin_t
@@ -41,11 +40,10 @@ imuState_t;
  */
 typedef enum
 {
-    IMU_NO_SPIN,   /**< IMU is not spinning. */
-    IMU_POS_SPIN,  /**< IMU is spinning in a positive direction. */
-    IMU_NEG_SPIN   /**< IMU is spinning in a negative direction. */
-}
-imuSpin_t;
+	IMU_NO_SPIN, /**< IMU is not spinning. */
+	IMU_POS_SPIN, /**< IMU is spinning in a positive direction. */
+	IMU_NEG_SPIN /**< IMU is spinning in a negative direction. */
+} imuSpin_t;
 
 /**
  * @brief Initializes the IMU sensor and related variables.

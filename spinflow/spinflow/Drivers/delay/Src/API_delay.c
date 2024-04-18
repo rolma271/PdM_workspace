@@ -14,12 +14,11 @@
 /* Private macro -------------------------------------------------------------*/
 /* Private variables ---------------------------------------------------------*/
 
-
 /**
  * Delay Functions
  */
 
-void delayInit(delay_t * delay, tick_t duration)
+void delayInit(delay_t *delay, tick_t duration)
 {
 	if (delay == NULL)
 		return;
@@ -29,7 +28,7 @@ void delayInit(delay_t * delay, tick_t duration)
 	delay->startTime = 0;
 }
 
-bool_t delayRead(delay_t * delay)
+bool_t delayRead(delay_t *delay)
 {
 	uint32_t elapsedTime = 0;
 	bool_t returnValue = false;
@@ -55,7 +54,7 @@ bool_t delayRead(delay_t * delay)
 	return returnValue;
 }
 
-void delayWrite(delay_t * delay, tick_t duration)
+void delayWrite(delay_t *delay, tick_t duration)
 {
 	if (delay == NULL)
 	{

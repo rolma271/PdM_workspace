@@ -36,10 +36,9 @@ typedef struct
 		struct
 		{
 			uint8_t blue; /**< Blue component of the color. */
-			uint8_t red;  /**< Red component of the color. */
+			uint8_t red; /**< Red component of the color. */
 			uint8_t green; /**< Green component of the color. */
-		}
-		colour; /**< Structure for individual color components. */
+		} colour; /**< Structure for individual color components. */
 
 		uint32_t value; /**< Composite color value as a single uint32_t for DMA transfers. */
 	};
@@ -90,7 +89,5 @@ void npxPort_SetBlue(uint8_t bright);
  * to the NeoPixel strip.
  */
 void npxPort_SetLEDs();
-
-
 
 #endif

@@ -20,7 +20,7 @@
 /**
  * @brief bool_t Boolean type
  */
-typedef bool 		bool_t;
+typedef bool bool_t;
 
 /**
  * @enum BSP_Led_TypeDef
@@ -32,10 +32,9 @@ typedef bool 		bool_t;
  */
 typedef enum
 {
-    LED_APP,  /**< LED associated with application-specific functions or indications. */
-    LED_IMU,  /**< LED for the Inertial Measurement Unit (IMU). */
-    LED_NPX   /**< LED for NeoPixels. */
-}
-BSP_Led_TypeDef;
+	LED_APP, /**< LED associated with application-specific functions or indications. */
+	LED_IMU, /**< LED for the Inertial Measurement Unit (IMU). */
+	LED_NPX /**< LED for NeoPixels. */
+} BSP_Led_TypeDef;
 
 #endif /* DEVICE_TYPES_H_ */

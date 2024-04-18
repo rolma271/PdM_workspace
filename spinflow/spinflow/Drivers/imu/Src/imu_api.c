@@ -20,21 +20,20 @@
  */
 typedef struct
 {
-    int16_t ax; /**< Accelerometer X-axis reading */
-    int16_t ay; /**< Accelerometer Y-axis reading */
-    int16_t az; /**< Accelerometer Z-axis reading */
+	int16_t ax; /**< Accelerometer X-axis reading */
+	int16_t ay; /**< Accelerometer Y-axis reading */
+	int16_t az; /**< Accelerometer Z-axis reading */
 
-    int16_t gx; /**< Gyroscope X-axis reading */
-    int16_t gy; /**< Gyroscope Y-axis reading */
-    int16_t gz; /**< Gyroscope Z-axis reading */
+	int16_t gx; /**< Gyroscope X-axis reading */
+	int16_t gy; /**< Gyroscope Y-axis reading */
+	int16_t gz; /**< Gyroscope Z-axis reading */
 
-    int16_t mx; /**< Magnetometer X-axis reading */
-    int16_t my; /**< Magnetometer Y-axis reading */
-    int16_t mz; /**< Magnetometer Z-axis reading */
+	int16_t mx; /**< Magnetometer X-axis reading */
+	int16_t my; /**< Magnetometer Y-axis reading */
+	int16_t mz; /**< Magnetometer Z-axis reading */
 
-    int16_t temp; /**< Temperature reading */
-}
-imu_t;
+	int16_t temp; /**< Temperature reading */
+} imu_t;
 
 static imu_t imu;
 
@@ -77,7 +76,6 @@ static bool imu_ProcessData();
  * @return bool Returns true if there is activity, false if it is idle.
  */
 static bool imu_IsActive();
-
 
 bool imu_Init()
 {
@@ -128,7 +126,7 @@ imuSpin_t imu_SpinDirection()
 	}
 	else
 	{
-		if (imu.gz>0)
+		if (imu.gz > 0)
 		{
 			return IMU_POS_SPIN;
 		}
@@ -186,5 +184,6 @@ static bool imu_ProcessData()
 
 static bool imu_IsActive()
 {
-	return ((imu.gx > IMU_SPIN_THRESHOLD) || (imu.gy > IMU_SPIN_THRESHOLD) || (imu.gz > IMU_SPIN_THRESHOLD));
+	return ((imu.gx > IMU_SPIN_THRESHOLD) || (imu.gy > IMU_SPIN_THRESHOLD)
+			|| (imu.gz > IMU_SPIN_THRESHOLD));
 }

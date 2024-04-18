@@ -67,19 +67,18 @@ pixel_t pixels[NEOPIXEL_LED_QTY];
  */
 uint16_t dmaData[NEOPIXELS_DMA_BUFFER_LENGTH];
 
-
 /**
-  * @brief DMA Initialization Function
-  * @param None
-  * @retval None
-  */
+ * @brief DMA Initialization Function
+ * @param None
+ * @retval None
+ */
 static void DMA_Init(void);
 
 /**
-  * @brief TIM1 Initialization Function
-  * @param None
-  * @retval None
-  */
+ * @brief TIM1 Initialization Function
+ * @param None
+ * @retval None
+ */
 static void TIM1_Init(void);
 
 /**
@@ -88,14 +87,12 @@ static void TIM1_Init(void);
 static void npxPort_initialSequence();
 
 /**
-  * @brief  This function is executed in case of error occurrence.
-  * @retval None
-  */
+ * @brief  This function is executed in case of error occurrence.
+ * @retval None
+ */
 static void Error_Handler(void);
 
-
-
- /**
+/**
  * NeoPixels Port Functions
  */
 
@@ -109,7 +106,7 @@ void npxPort_Init()
 
 void npxPort_ClearLEDs()
 {
-	for (int i= 0; i<NEOPIXEL_LED_QTY; i++)
+	for (int i = 0; i < NEOPIXEL_LED_QTY; i++)
 	{
 		pixels[i].value = 0;
 	}
@@ -118,7 +115,7 @@ void npxPort_ClearLEDs()
 
 void npxPort_SetRed(uint8_t bright)
 {
-	for (int i= 0; i<NEOPIXEL_LED_QTY; i++)
+	for (int i = 0; i < NEOPIXEL_LED_QTY; i++)
 	{
 		pixels[i].value = 0;
 		pixels[i].colour.red = bright;
@@ -128,7 +125,7 @@ void npxPort_SetRed(uint8_t bright)
 
 void npxPort_SetGreen(uint8_t bright)
 {
-	for (int i= 0; i<NEOPIXEL_LED_QTY; i++)
+	for (int i = 0; i < NEOPIXEL_LED_QTY; i++)
 	{
 		pixels[i].value = 0;
 		pixels[i].colour.green = bright;
@@ -138,7 +135,7 @@ void npxPort_SetGreen(uint8_t bright)
 
 void npxPort_SetBlue(uint8_t bright)
 {
-	for (int i= 0; i<NEOPIXEL_LED_QTY; i++)
+	for (int i = 0; i < NEOPIXEL_LED_QTY; i++)
 	{
 		pixels[i].value = 0;
 		pixels[i].colour.blue = bright;
@@ -146,17 +143,16 @@ void npxPort_SetBlue(uint8_t bright)
 	npxPort_SetLEDs();
 }
 
-
 void npxPort_SetLEDs(void)
 {
 	uint32_t iPWM = 0;
 
 	// Pixel to bit conversion for serial transmission
-	for (int iPix = 0; iPix<NEOPIXEL_LED_QTY; iPix++)
+	for (int iPix = 0; iPix < NEOPIXEL_LED_QTY; iPix++)
 	{
-		for (int iBit = NEOPIXELS_LED_BIT_QTY-1; iBit>=0; iBit--)
+		for (int iBit = NEOPIXELS_LED_BIT_QTY - 1; iBit >= 0; iBit--)
 		{
-			if (pixels[iPix].value & (1<<iBit))
+			if (pixels[iPix].value & (1 << iBit))
 			{
 				// Send a 1: Set 68% PWMs duty cycle
 				dmaData[iPWM] = NEOPIXELS_BIT_SET_TIM_COUNTER;
@@ -173,107 +169,130 @@ void npxPort_SetLEDs(void)
 	//@todo: assert iPWM==NEOPIXELS_DMA_BUFFER_LENGTH
 
 	// Send PWM signal via DMA controller
-	HAL_TIM_PWM_Start_DMA(&htim1, TIM_CHANNEL_1, (uint32_t *)dmaData, iPWM);
+	HAL_TIM_PWM_Start_DMA(&htim1, TIM_CHANNEL_1, (uint32_t*) dmaData, iPWM);
 }
 
 static void TIM1_Init(void)
 {
-  TIM_ClockConfigTypeDef sClockSourceConfig = {0};
-  TIM_MasterConfigTypeDef sMasterConfig = {0};
-  TIM_OC_InitTypeDef sConfigOC = {0};
-  TIM_BreakDeadTimeConfigTypeDef sBreakDeadTimeConfig = {0};
+	TIM_ClockConfigTypeDef sClockSourceConfig =
+	{ 0 };
+	TIM_MasterConfigTypeDef sMasterConfig =
+	{ 0 };
+	TIM_OC_InitTypeDef sConfigOC =
+	{ 0 };
+	TIM_BreakDeadTimeConfigTypeDef sBreakDeadTimeConfig =
+	{ 0 };
 
-  htim1.Instance = TIM1;
-  htim1.Init.Prescaler = 0;
-  htim1.Init.CounterMode = TIM_COUNTERMODE_UP;
-  htim1.Init.Period = 90-1;
-  htim1.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
-  htim1.Init.RepetitionCounter = 0;
-  htim1.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_DISABLE;
-  if (HAL_TIM_Base_Init(&htim1) != HAL_OK)
-  {
-    Error_Handler();
-  }
-  sClockSourceConfig.ClockSource = TIM_CLOCKSOURCE_INTERNAL;
-  if (HAL_TIM_ConfigClockSource(&htim1, &sClockSourceConfig) != HAL_OK)
-  {
-    Error_Handler();
-  }
-  if (HAL_TIM_PWM_Init(&htim1) != HAL_OK)
-  {
-    Error_Handler();
-  }
-  sMasterConfig.MasterOutputTrigger = TIM_TRGO_RESET;
-  sMasterConfig.MasterSlaveMode = TIM_MASTERSLAVEMODE_DISABLE;
-  if (HAL_TIMEx_MasterConfigSynchronization(&htim1, &sMasterConfig) != HAL_OK)
-  {
-    Error_Handler();
-  }
-  sConfigOC.OCMode = TIM_OCMODE_PWM1;
-  sConfigOC.Pulse = 0;
-  sConfigOC.OCPolarity = TIM_OCPOLARITY_HIGH;
-  sConfigOC.OCNPolarity = TIM_OCNPOLARITY_HIGH;
-  sConfigOC.OCFastMode = TIM_OCFAST_DISABLE;
-  sConfigOC.OCIdleState = TIM_OCIDLESTATE_RESET;
-  sConfigOC.OCNIdleState = TIM_OCNIDLESTATE_RESET;
-  if (HAL_TIM_PWM_ConfigChannel(&htim1, &sConfigOC, TIM_CHANNEL_1) != HAL_OK)
-  {
-    Error_Handler();
-  }
-  sBreakDeadTimeConfig.OffStateRunMode = TIM_OSSR_DISABLE;
-  sBreakDeadTimeConfig.OffStateIDLEMode = TIM_OSSI_DISABLE;
-  sBreakDeadTimeConfig.LockLevel = TIM_LOCKLEVEL_OFF;
-  sBreakDeadTimeConfig.DeadTime = 0;
-  sBreakDeadTimeConfig.BreakState = TIM_BREAK_DISABLE;
-  sBreakDeadTimeConfig.BreakPolarity = TIM_BREAKPOLARITY_HIGH;
-  sBreakDeadTimeConfig.AutomaticOutput = TIM_AUTOMATICOUTPUT_DISABLE;
-  if (HAL_TIMEx_ConfigBreakDeadTime(&htim1, &sBreakDeadTimeConfig) != HAL_OK)
-  {
-    Error_Handler();
-  }
+	htim1.Instance = TIM1;
+	htim1.Init.Prescaler = 0;
+	htim1.Init.CounterMode = TIM_COUNTERMODE_UP;
+	htim1.Init.Period = 90 - 1;
+	htim1.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
+	htim1.Init.RepetitionCounter = 0;
+	htim1.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_DISABLE;
+	if (HAL_TIM_Base_Init(&htim1) != HAL_OK)
+	{
+		Error_Handler();
+	}
+	sClockSourceConfig.ClockSource = TIM_CLOCKSOURCE_INTERNAL;
+	if (HAL_TIM_ConfigClockSource(&htim1, &sClockSourceConfig) != HAL_OK)
+	{
+		Error_Handler();
+	}
+	if (HAL_TIM_PWM_Init(&htim1) != HAL_OK)
+	{
+		Error_Handler();
+	}
+	sMasterConfig.MasterOutputTrigger = TIM_TRGO_RESET;
+	sMasterConfig.MasterSlaveMode = TIM_MASTERSLAVEMODE_DISABLE;
+	if (HAL_TIMEx_MasterConfigSynchronization(&htim1, &sMasterConfig) != HAL_OK)
+	{
+		Error_Handler();
+	}
+	sConfigOC.OCMode = TIM_OCMODE_PWM1;
+	sConfigOC.Pulse = 0;
+	sConfigOC.OCPolarity = TIM_OCPOLARITY_HIGH;
+	sConfigOC.OCNPolarity = TIM_OCNPOLARITY_HIGH;
+	sConfigOC.OCFastMode = TIM_OCFAST_DISABLE;
+	sConfigOC.OCIdleState = TIM_OCIDLESTATE_RESET;
+	sConfigOC.OCNIdleState = TIM_OCNIDLESTATE_RESET;
+	if (HAL_TIM_PWM_ConfigChannel(&htim1, &sConfigOC, TIM_CHANNEL_1) != HAL_OK)
+	{
+		Error_Handler();
+	}
+	sBreakDeadTimeConfig.OffStateRunMode = TIM_OSSR_DISABLE;
+	sBreakDeadTimeConfig.OffStateIDLEMode = TIM_OSSI_DISABLE;
+	sBreakDeadTimeConfig.LockLevel = TIM_LOCKLEVEL_OFF;
+	sBreakDeadTimeConfig.DeadTime = 0;
+	sBreakDeadTimeConfig.BreakState = TIM_BREAK_DISABLE;
+	sBreakDeadTimeConfig.BreakPolarity = TIM_BREAKPOLARITY_HIGH;
+	sBreakDeadTimeConfig.AutomaticOutput = TIM_AUTOMATICOUTPUT_DISABLE;
+	if (HAL_TIMEx_ConfigBreakDeadTime(&htim1, &sBreakDeadTimeConfig) != HAL_OK)
+	{
+		Error_Handler();
+	}
 
-  HAL_TIM_MspPostInit(&htim1);
+	HAL_TIM_MspPostInit(&htim1);
 }
 
 void npxPort_initialSequence()
 {
-	npxPort_ClearLEDs(); HAL_Delay(100);
+	npxPort_ClearLEDs();
+	HAL_Delay(100);
 
-	npxPort_SetRed(0); HAL_Delay(100);
-	npxPort_SetRed(50);	HAL_Delay(100);
-	npxPort_SetRed(100); HAL_Delay(100);
-	npxPort_SetRed(150); HAL_Delay(100);
-	npxPort_SetRed(200); HAL_Delay(100);
-	npxPort_SetRed(250); HAL_Delay(100);
+	npxPort_SetRed(0);
+	HAL_Delay(100);
+	npxPort_SetRed(50);
+	HAL_Delay(100);
+	npxPort_SetRed(100);
+	HAL_Delay(100);
+	npxPort_SetRed(150);
+	HAL_Delay(100);
+	npxPort_SetRed(200);
+	HAL_Delay(100);
+	npxPort_SetRed(250);
+	HAL_Delay(100);
 
-	npxPort_SetGreen(0);HAL_Delay(100);
-	npxPort_SetGreen(50); HAL_Delay(100);
-	npxPort_SetGreen(100); HAL_Delay(100);
-	npxPort_SetGreen(150); HAL_Delay(100);
-	npxPort_SetGreen(200);HAL_Delay(100);
-	npxPort_SetGreen(250);HAL_Delay(100);
+	npxPort_SetGreen(0);
+	HAL_Delay(100);
+	npxPort_SetGreen(50);
+	HAL_Delay(100);
+	npxPort_SetGreen(100);
+	HAL_Delay(100);
+	npxPort_SetGreen(150);
+	HAL_Delay(100);
+	npxPort_SetGreen(200);
+	HAL_Delay(100);
+	npxPort_SetGreen(250);
+	HAL_Delay(100);
 
+	npxPort_SetBlue(0);
+	HAL_Delay(100);
+	npxPort_SetBlue(50);
+	HAL_Delay(100);
+	npxPort_SetBlue(100);
+	HAL_Delay(100);
+	npxPort_SetBlue(150);
+	HAL_Delay(100);
+	npxPort_SetBlue(200);
+	HAL_Delay(100);
+	npxPort_SetBlue(250);
+	HAL_Delay(100);
 
-	npxPort_SetBlue(0);	HAL_Delay(100);
-	npxPort_SetBlue(50); HAL_Delay(100);
-	npxPort_SetBlue(100); HAL_Delay(100);
-	npxPort_SetBlue(150);HAL_Delay(100);
-	npxPort_SetBlue(200);HAL_Delay(100);
-	npxPort_SetBlue(250); HAL_Delay(100);
-
-	npxPort_ClearLEDs(); HAL_Delay(100);
+	npxPort_ClearLEDs();
+	HAL_Delay(100);
 }
 
 static void DMA_Init(void)
 {
 
-  /* DMA controller clock enable */
-  __HAL_RCC_DMA2_CLK_ENABLE();
+	/* DMA controller clock enable */
+	__HAL_RCC_DMA2_CLK_ENABLE();
 
-  /* DMA interrupt init */
-  /* DMA2_Stream1_IRQn interrupt configuration */
-  HAL_NVIC_SetPriority(DMA2_Stream1_IRQn, 0, 0);
-  HAL_NVIC_EnableIRQ(DMA2_Stream1_IRQn);
+	/* DMA interrupt init */
+	/* DMA2_Stream1_IRQn interrupt configuration */
+	HAL_NVIC_SetPriority(DMA2_Stream1_IRQn, 0, 0);
+	HAL_NVIC_EnableIRQ(DMA2_Stream1_IRQn);
 
 }
 

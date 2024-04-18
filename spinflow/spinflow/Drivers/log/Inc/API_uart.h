@@ -1,9 +1,9 @@
 /**
-  ******************************************************************************
-  * @file    API_uart.h
-  * @author  Marco Rolon
-  * @brief   Header for API_UART.c module
-  */
+ ******************************************************************************
+ * @file    API_uart.h
+ * @author  Marco Rolon
+ * @brief   Header for API_UART.c module
+ */
 
 /* Define to prevent recursive inclusion -------------------------------------*/
 #ifndef __API_UART_H
@@ -21,7 +21,7 @@
  * Types
  */
 
-typedef bool 		bool_t;
+typedef bool bool_t;
 
 /* Definition for USARTx clock resources */
 #define USARTx                           USART3
@@ -55,7 +55,7 @@ bool_t uartInit();
  * @param  uint8_t * pstring String
  * @retval None
  */
-void uartSendString(uint8_t * pstring);
+void uartSendString(uint8_t *pstring);
 
 /**
  * @brief  Sends a string via UART
@@ -63,7 +63,7 @@ void uartSendString(uint8_t * pstring);
  * @param  uint16_t size String size
  * @retval None
  */
-void uartSendStringSize(uint8_t * pstring, uint16_t size);
+void uartSendStringSize(uint8_t *pstring, uint16_t size);
 
 /**
  * @brief  Receives a string via UART
@@ -71,6 +71,6 @@ void uartSendStringSize(uint8_t * pstring, uint16_t size);
  * @param  uint16_t size String size
  * @retval None
  */
-void uartReceiveStringSize(uint8_t * pstring, uint16_t size);
+void uartReceiveStringSize(uint8_t *pstring, uint16_t size);
 
 #endif

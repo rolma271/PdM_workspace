@@ -1,0 +1,7 @@
+../Drivers/log/Src/API_uart.c:43:8:uartInit	2
+../Drivers/log/Src/API_uart.c:74:6:uartSendString	2
+../Drivers/log/Src/API_uart.c:83:6:uartSendStringSize	2
+../Drivers/log/Src/API_uart.c:92:6:uartReceiveStringSize	2
+../Drivers/log/Src/API_uart.c:100:13:uartPrintConfig	1
+../Drivers/log/Src/API_uart.c:106:13:uartErrorHandler	1
+../Drivers/log/Src/API_uart.c:120:1:__io_putchar	1

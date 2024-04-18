@@ -19,7 +19,6 @@
  */
 static void log_StartMsg();
 
-
 bool_t log_Init()
 {
 	if (DEVICE_LOG_ENABLE)
@@ -40,43 +39,43 @@ bool_t log_Init()
 	}
 }
 
-bool_t log_SendString(logType_t logType, char * pstring)
+bool_t log_SendString(logType_t logType, char *pstring)
 {
 	if (DEVICE_LOG_ENABLE)
 	{
-	// check string validity
-		if (pstring==NULL)
+		// check string validity
+		if (pstring == NULL)
 		{
-			uartSendString((uint8_t*)"<System Error: NULL String >\n\r");
+			uartSendString((uint8_t*) "<System Error: NULL String >\n\r");
 			return false;
 		}
 
 		// log preamble
 		switch (logType)
 		{
-			case LOG_APP_INFO:
-				uartSendString((uint8_t*)"<APP Info: ");
-				break;
+		case LOG_APP_INFO:
+			uartSendString((uint8_t*) "<APP Info: ");
+			break;
 
-			case LOG_APP_ERROR:
-				uartSendString((uint8_t*)"<APP Error: ");
-				break;
+		case LOG_APP_ERROR:
+			uartSendString((uint8_t*) "<APP Error: ");
+			break;
 
-			case LOG_SYSTEM_ERROR:
-				uartSendString((uint8_t*)"<System Error: ");
-				break;
+		case LOG_SYSTEM_ERROR:
+			uartSendString((uint8_t*) "<System Error: ");
+			break;
 
-			default:
-				uartSendString((uint8_t*)"<System Error: Log Type Unknown");
-				return false;
-				//break;
+		default:
+			uartSendString((uint8_t*) "<System Error: Log Type Unknown");
+			return false;
+			//break;
 		}
 
 		// string
-		uartSendString((uint8_t*)pstring);
+		uartSendString((uint8_t*) pstring);
 
 		// log postamble
-		uartSendString((uint8_t*)">\n\r");
+		uartSendString((uint8_t*) ">\n\r");
 
 		return true;
 	}
@@ -86,9 +85,8 @@ bool_t log_SendString(logType_t logType, char * pstring)
 	}
 }
 
-
 static void log_StartMsg()
 {
-	log_SendString(LOG_APP_INFO,DEVICE_NAME);
-	log_SendString(LOG_APP_INFO,DEVICE_FIRMWARE_VERSION);
+	log_SendString(LOG_APP_INFO, DEVICE_NAME);
+	log_SendString(LOG_APP_INFO, DEVICE_FIRMWARE_VERSION);
 }
