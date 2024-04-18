@@ -154,12 +154,12 @@ void npxPort_SetLEDs(void)
 		{
 			if (pixels[iPix].value & (1 << iBit))
 			{
-				// Send a 1: Set 68% PWMs duty cycle
+				// Logic 1: Set the equivalent to a 68% of PWMs duty cycle
 				dmaData[iPWM] = NEOPIXELS_BIT_SET_TIM_COUNTER;
 			}
 			else
 			{
-				// Send a 0: Set 32% PWMs duty cycle
+				// Logic 0: Set the equivalent to a 32% of PWMs duty cycle
 				dmaData[iPWM] = NEOPIXELS_BIT_RESET_TIM_COUNTER;
 			}
 			iPWM++;

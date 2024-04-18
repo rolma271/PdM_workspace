@@ -48,7 +48,7 @@ typedef enum
  * processes and state transitions. It is a structure containing the start time, duration, and a flag
  * indicating whether the timer is currently running.
  */
-delay_t appTimer =
+static delay_t appTimer =
 { .startTime = 0, .duration = 0, .running = false };
 
 /**

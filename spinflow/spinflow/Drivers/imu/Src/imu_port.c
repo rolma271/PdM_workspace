@@ -15,13 +15,18 @@
 #define IMU_I2C_TIMEOUT_MS		1000
 
 /**
+ * MPU defines
+ */
+#define WHO_AM_I          		0x75
+#define WHO_AM_I_9250_VALUE		0x71
+#define PWR_MGMT_1        		0x6B
+
+/**
  * Accelerometer & Gyro defines
  */
-#define WHO_AM_I_9250_ANS 		0x71
-#define WHO_AM_I          		0x75
 #define GYRO_CONFIG       		0x1B
 #define ACCEL_CONFIG      		0x1C
-#define PWR_MGMT_1        		0x6B
+
 #define ACCEL_XOUT_H      		0x3B
 
 /**
@@ -228,7 +233,7 @@ bool imuPort_Check()
 	HAL_I2C_Mem_Read(&hi2c1, imu_i2cAddress << 1, WHO_AM_I, 1, buffer, 1,
 			IMU_I2C_TIMEOUT_MS);
 
-	return (buffer[0] == WHO_AM_I_9250_ANS) ? true : false;
+	return (buffer[0] == WHO_AM_I_9250_VALUE) ? true : false;
 }
 
 bool imuPort_AccReadData(acc_t *acc)
@@ -299,7 +304,7 @@ static bool imuPort_begin(uint8_t accScale, uint8_t gyroScale)
 	HAL_I2C_Mem_Read(&hi2c1, imu_i2cAddress << 1, WHO_AM_I, 1, buffer, 1,
 			IMU_I2C_TIMEOUT_MS);
 
-	if (buffer[0] == WHO_AM_I_9250_ANS)
+	if (buffer[0] == WHO_AM_I_9250_VALUE)
 	{
 		// Startup / reset the sensor
 		buffer[0] = 0x00;

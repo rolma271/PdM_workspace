@@ -31,23 +31,23 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   CONTENTS, READONLY
  13 .comment      00000043  00000000  00000000  00020048  2**0
                   CONTENTS, READONLY
- 14 .debug_info   0001286a  00000000  00000000  0002008b  2**0
+ 14 .debug_info   00012873  00000000  00000000  0002008b  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 15 .debug_abbrev 00002e38  00000000  00000000  000328f5  2**0
+ 15 .debug_abbrev 00002e51  00000000  00000000  000328fe  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 16 .debug_aranges 000011d8  00000000  00000000  00035730  2**3
+ 16 .debug_aranges 000011d8  00000000  00000000  00035750  2**3
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 17 .debug_rnglists 00000df2  00000000  00000000  00036908  2**0
+ 17 .debug_rnglists 00000df2  00000000  00000000  00036928  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 18 .debug_macro  00026240  00000000  00000000  000376fa  2**0
+ 18 .debug_macro  00026240  00000000  00000000  0003771a  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 19 .debug_line   00018448  00000000  00000000  0005d93a  2**0
+ 19 .debug_line   00018448  00000000  00000000  0005d95a  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 20 .debug_str    000df917  00000000  00000000  00075d82  2**0
+ 20 .debug_str    000df919  00000000  00000000  00075da2  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 21 .debug_frame  0000499c  00000000  00000000  0015569c  2**2
+ 21 .debug_frame  0000499c  00000000  00000000  001556bc  2**2
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 22 .debug_line_str 0000005b  00000000  00000000  0015a038  2**0
+ 22 .debug_line_str 0000005b  00000000  00000000  0015a058  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
 
 Disassembly of section .text:
@@ -14425,7 +14425,7 @@ bool imuPort_Check()
  80055a0:	f7fc fe0e 	bl	80021c0 <HAL_I2C_Mem_Read>
 			IMU_I2C_TIMEOUT_MS);
 
-	return (buffer[0] == WHO_AM_I_9250_ANS) ? true : false;
+	return (buffer[0] == WHO_AM_I_9250_VALUE) ? true : false;
  80055a4:	793b      	ldrb	r3, [r7, #4]
  80055a6:	2b71      	cmp	r3, #113	; 0x71
  80055a8:	bf0c      	ite	eq
@@ -14616,7 +14616,7 @@ static bool imuPort_begin(uint8_t accScale, uint8_t gyroScale)
  80056d0:	f7fc fd76 	bl	80021c0 <HAL_I2C_Mem_Read>
 			IMU_I2C_TIMEOUT_MS);
 
-	if (buffer[0] == WHO_AM_I_9250_ANS)
+	if (buffer[0] == WHO_AM_I_9250_VALUE)
  80056d4:	7b3b      	ldrb	r3, [r7, #12]
  80056d6:	2b71      	cmp	r3, #113	; 0x71
  80056d8:	d11f      	bne.n	800571a <imuPort_begin+0x7a>
