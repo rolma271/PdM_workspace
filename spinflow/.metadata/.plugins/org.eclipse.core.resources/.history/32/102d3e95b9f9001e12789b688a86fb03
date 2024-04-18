@@ -1,0 +1,83 @@
+/**
+ ******************************************************************************
+ * @file    imu.h
+ * @author 	Marco Rolon
+ * @brief   IMU
+ ******************************************************************************
+ */
+
+#ifndef IMU_H
+#define IMU_H
+
+#include "device_config.h"
+#include "device_types.h"
+
+ /**
+ * IMU
+ */
+typedef enum
+{
+  IMU_IDLE,
+  IMU_ACTIVE
+}
+imuState_t;
+
+typedef enum
+{
+  IMU_NO_SPIN,
+  IMU_POS_SPIN,
+  IMU_NEG_SPIN
+}
+imuSpin_t;
+
+typedef struct
+{
+  // accelerometer
+  uint8_t ax;
+  uint8_t ay;
+  uint8_t az;
+
+  //gyro
+  uint8_t gx;
+  uint8_t gy;
+  uint8_t gz;
+
+  // magnetomer
+  uint8_t mx;
+  uint8_t my;
+  uint8_t mz;
+}
+imu_t;
+
+/**
+ * @brief IMU variables initialization
+ */
+bool imuInit();
+
+/**
+ * @brief IMU config sensor registers via SPI
+ */
+bool imuConfig();
+
+/**
+ * @brief IMU Read Data from SPI
+ */
+bool imuReadData();
+
+/**
+ * @brief IMU Process Data
+ */
+bool imuProcessData();
+
+/**
+ * @brief IMU Motion State
+ */
+imuState_t imuState();
+
+/**
+ * @brief IMU Spin Direction
+ */
+imuSpin_t imuSpinDirection();
+
+
+#endif

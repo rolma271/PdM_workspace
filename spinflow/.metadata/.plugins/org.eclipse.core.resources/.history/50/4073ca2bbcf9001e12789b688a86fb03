@@ -1,0 +1,31 @@
+/**
+ ******************************************************************************
+ * @file    imu_port.c
+ * @author 	Marco Rolon
+ * @brief   IMU port
+ ******************************************************************************
+ */
+
+#include "imu_port.h"
+#include "device_config.h"
+#include "device_types.h"
+
+ /**
+ * IMU Port
+ */
+
+/**
+ * @brief IMU variables initialization
+ */
+bool imuPort_Init()
+{
+	return false;
+}
+
+/**
+ * @brief IMU Read Data from SPI
+ */
+bool imuPortReadData()
+{
+	return false;
+}

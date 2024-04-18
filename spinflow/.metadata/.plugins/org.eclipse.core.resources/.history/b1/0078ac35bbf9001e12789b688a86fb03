@@ -1,0 +1,33 @@
+/**
+ ******************************************************************************
+ * @file    imu_port.h
+ * @author 	Marco Rolon
+ * @brief   IMU Port
+ ******************************************************************************
+ */
+
+#ifndef IMU_H
+#define IMU_H
+
+#include <stdio.h>
+#include "stm32f4xx_hal.h"
+#include "stm32f4xx_nucleo_144.h"
+
+#include "device_types.h"
+
+ /**
+ * IMU Port
+ */
+
+/**
+ * @brief IMU variables initialization
+ */
+bool imuPortInit();
+
+/**
+ * @brief IMU Read Data from SPI
+ */
+bool imuPortReadData();
+
+
+#endif

@@ -1,0 +1,29 @@
+/**
+ ******************************************************************************
+ * @file    npx_port.h
+ * @author 	Marco Rolon
+ * @brief   NeoPixels port
+ ******************************************************************************
+ */
+
+#ifndef NEOPIXELS_PORT_H
+#define NEOPIXELS_PORT_H
+
+#include "device_config.h"
+#include "device_types.h"
+
+#define NEOPIXEL_LED_QTY	DEVICE_NEOPIXEL_QUANTITY
+
+/**
+* @brief NeoPixels variables initialization
+*/
+void neopixelsPortInit();
+
+/**
+* @brief NeoPixels set default values
+*/
+void neopixelsPortClear();
+
+
+
+#endif

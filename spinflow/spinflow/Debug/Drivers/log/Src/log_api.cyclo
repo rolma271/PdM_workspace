@@ -1,0 +1,3 @@
+../Drivers/log/Src/log_api.c:23:8:log_Init	2
+../Drivers/log/Src/log_api.c:43:8:log_SendString	6
+../Drivers/log/Src/log_api.c:90:13:log_StartMsg	1

@@ -1,0 +1,21 @@
+/**
+ ******************************************************************************
+ * @file    npx_port.c
+ * @author 	Marco Rolon
+ * @brief   NeoPixels port
+ ******************************************************************************
+ */
+
+#include "npx_port.h"
+
+
+void npxPort_Init()
+{
+
+}
+
+void npxPort_ClearLEDs()
+{
+
+}
+

@@ -1,0 +1,51 @@
+/**
+ ******************************************************************************
+ * @file    imu.c
+ * @author 	Marco Rolon
+ * @brief   IMU
+ ******************************************************************************
+ */
+
+#include "imu.h"
+#include "imu_port.h"
+
+static imu_t imu;
+
+bool imuInit()
+{
+	  imu.ax = 0;
+	  imu.ay = 0;
+	  imu.az = 0;
+
+	  //gyro
+	  imu.gx = 0;
+	  imu.gy = 0;
+	  imu.gz = 0;
+
+	  // magnetomer
+	  imu.mx = 0;
+	  imu.my = 0;
+	  imu.mz = 0;
+
+	  return false;
+}
+
+bool imuCheck()
+{
+	return false;
+}
+
+bool imuProcessData()
+{
+	return false;
+}
+
+imuState_t imuState()
+{
+	return IMU_IDLE;
+}
+
+imuSpin_t imuSpinDirection()
+{
+	return IMU_NO_SPIN;
+}

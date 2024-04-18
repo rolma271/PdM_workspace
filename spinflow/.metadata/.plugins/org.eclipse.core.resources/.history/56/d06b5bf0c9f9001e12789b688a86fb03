@@ -1,0 +1,47 @@
+/**
+ ******************************************************************************
+ * @file    npx_port.h
+ * @author 	Marco Rolon
+ * @brief   NeoPixels port
+ ******************************************************************************
+ */
+
+#ifndef NEOPIXELS_PORT_H
+#define NEOPIXELS_PORT_H
+
+#include <stdio.h>
+#include "stm32f4xx_hal.h"
+#include "stm32f4xx_nucleo_144.h"
+
+#include "device_types.h"
+#include "device_config.h"
+
+
+#define NEOPIXEL_LED_QTY	DEVICE_NEOPIXEL_QUANTITY
+
+typedef struct
+{
+  uint8_t red;
+  uint8_t green;
+  uint8_t blue;
+}
+pixel_t;
+
+/**
+* @brief NeoPixels variables initialization
+*/
+void npxPort_Init();
+
+/**
+* @brief NeoPixels set default values
+*/
+void npxPort_ClearLEDs();
+
+
+/**
+ * @brief NeoPixels configuration
+ */
+bool npx_Config(pixel_t pixels[], uint8_t size);
+
+
+#endif

@@ -1,0 +1,41 @@
+/**
+ ******************************************************************************
+ * @file    npx_api.h
+ * @author 	Marco Rolon
+ * @brief   NeoPixels API
+ ******************************************************************************
+ */
+
+#ifndef NEOPIXELS_H
+#define NEOPIXELS_H
+
+#include "device_config.h"
+#include "device_types.h"
+
+
+typedef struct
+{
+  uint8_t red;
+  uint8_t green;
+  uint8_t blue;
+}
+pixel_t;
+
+/**
+* @brief NeoPixels variables initialization
+*/
+void neopixelsInit();
+
+/**
+* @brief NeoPixels set default values
+*/
+void neopixelsClear();
+
+/**
+ * @brief NeoPixels configuration
+ */
+bool neopixelsConfig(pixel_t pixels[], uint8_t size);
+
+
+
+#endif

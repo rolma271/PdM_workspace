@@ -1,0 +1,26 @@
+/**
+ ******************************************************************************
+ * @file    neopixels.c
+ * @author 	Marco Rolon
+ * @brief   NeoPixels
+ ******************************************************************************
+ */
+
+#include "neopixels.h"
+
+pixel_t pixels[NEOPIXEL_LED_QTY];
+
+void neopixelsInit()
+{
+	neopixelsClear();
+}
+
+void neopixelsClear()
+{
+
+}
+
+bool neopixelsConfig(pixel_t pixels[], uint8_t size)
+{
+	return false;
+}

@@ -1,0 +1,34 @@
+/**
+ ******************************************************************************
+ * @file    npx_api.c
+ * @author 	Marco Rolon
+ * @brief   NeoPixels API
+ ******************************************************************************
+ */
+
+#include "npx_api.h"
+#include "npx_port.h"
+
+pixel_t pixels[NEOPIXEL_LED_QTY];
+
+void neopixelsInit()
+{
+	npxPort_Init();
+}
+
+void neopixelsClear()
+{
+	npxPort_ClearLEDs();
+}
+
+
+void neopixelsSetPositive()
+{
+
+}
+
+
+void neopixelsSetNegaive()
+{
+	npxPort_ClearLEDs();
+}

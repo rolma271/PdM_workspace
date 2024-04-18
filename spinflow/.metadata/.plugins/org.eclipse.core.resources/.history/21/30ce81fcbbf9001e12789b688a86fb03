@@ -1,0 +1,26 @@
+/**
+ ******************************************************************************
+ * @file    npx_port.c
+ * @author 	Marco Rolon
+ * @brief   NeoPixels port
+ ******************************************************************************
+ */
+
+#include <npx_port.h>
+
+/**
+* @brief NeoPixels variables initialization
+*/
+void npxPort_Init()
+{
+
+}
+
+/**
+* @brief NeoPixels set default values
+*/
+void neopixelsPortClear()
+{
+
+}
+
