@@ -2,7 +2,7 @@
  ******************************************************************************
  * @file    device_config.h
  *
- * @author 	Marco Rolon
+ * @author 	Marco Rolón Radcenco
  *
  * @brief   Device config file
  ******************************************************************************
@@ -42,7 +42,7 @@
  * Spin detection is used in the application to trigger specific behaviors on NeoPixels color patterns.
  * The value is specified in degrees per second.
  */
-#define DEVICE_IMU_SPIN_THRESHOLD 50
+#define DEVICE_IMU_SPIN_THRESHOLD 90
 
 /**
  * @def DEVICE_NEOPIXEL_QUANTITY
@@ -63,13 +63,13 @@
  * @def APP_IDLE_DELAY_MS
  * @brief Delay duration between consecutive readings in idle state, in milliseconds.
  */
-#define APP_IDLE_DELAY_MS 200
+#define APP_IDLE_DELAY_MS 50
 
 /**
  * @def APP_CONFIG_DELAY_MS
  * @brief Delay duration between consecutive readings in active state, used for NeoPixel configuration operations, in milliseconds.
  */
-#define APP_CONFIG_DELAY_MS 500
+#define APP_CONFIG_DELAY_MS 100
 
 /**
  * @def DEVICE_LOG_ENABLE
@@ -78,5 +78,13 @@
  * Controls whether logging is enabled (1) or disabled (0) within the device.
  */
 #define DEVICE_LOG_ENABLE 1
+
+/**
+ * @def DEVICE_NEOPIXEL_INITIAL_SEQUENCE
+ * @brief Enable or disable the NeoPixels initial colour sequence.
+ *
+ * Controls whether the sequence is enabled (1) or disabled (0).
+ */
+#define DEVICE_NEOPIXEL_INITIAL_SEQUENCE 1
 
 #endif /* DEVICE_CONFIG_H_ */

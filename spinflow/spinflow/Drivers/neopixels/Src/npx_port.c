@@ -13,7 +13,7 @@
 
 /**
  * @def NEOPIXELS_LED_BIT_QTY
- * @brief Defines the number of bits per LED for encoding color information omn NeoPixels.
+ * @brief Defines the number of bits per LED for encoding color information on NeoPixels.
  *
  * Each NeoPixel LED requires 24 bits of data (8 bits each for red, green, and blue).
  */
@@ -59,13 +59,13 @@ DMA_HandleTypeDef hdma_tim1_ch1;
  * @var pixels
  * @brief Array to store the color configuration for each NeoPixel LED.
  */
-pixel_t pixels[NEOPIXEL_LED_QTY];
+static pixel_t pixels[NEOPIXEL_LED_QTY];
 
 /**
  * @var dmaData
  * @brief DMA transfer buffer, populated based on the pixels array and used to send data to the NeoPixels via DMA.
  */
-uint16_t dmaData[NEOPIXELS_DMA_BUFFER_LENGTH];
+static uint16_t dmaData[NEOPIXELS_DMA_BUFFER_LENGTH];
 
 /**
  * @brief DMA Initialization Function
@@ -166,8 +166,6 @@ void npxPort_SetLEDs(void)
 		}
 	}
 
-	//@todo: assert iPWM==NEOPIXELS_DMA_BUFFER_LENGTH
-
 	// Send PWM signal via DMA controller
 	HAL_TIM_PWM_Start_DMA(&htim1, TIM_CHANNEL_1, (uint32_t*) dmaData, iPWM);
 }
@@ -237,50 +235,53 @@ static void TIM1_Init(void)
 
 void npxPort_initialSequence()
 {
-	npxPort_ClearLEDs();
-	HAL_Delay(100);
+	if (DEVICE_NEOPIXEL_INITIAL_SEQUENCE)
+	{
+		npxPort_ClearLEDs();
+		HAL_Delay(100);
 
-	npxPort_SetRed(0);
-	HAL_Delay(100);
-	npxPort_SetRed(50);
-	HAL_Delay(100);
-	npxPort_SetRed(100);
-	HAL_Delay(100);
-	npxPort_SetRed(150);
-	HAL_Delay(100);
-	npxPort_SetRed(200);
-	HAL_Delay(100);
-	npxPort_SetRed(250);
-	HAL_Delay(100);
+		npxPort_SetRed(0);
+		HAL_Delay(100);
+		npxPort_SetRed(50);
+		HAL_Delay(100);
+		npxPort_SetRed(100);
+		HAL_Delay(100);
+		npxPort_SetRed(150);
+		HAL_Delay(100);
+		npxPort_SetRed(200);
+		HAL_Delay(100);
+		npxPort_SetRed(250);
+		HAL_Delay(100);
 
-	npxPort_SetGreen(0);
-	HAL_Delay(100);
-	npxPort_SetGreen(50);
-	HAL_Delay(100);
-	npxPort_SetGreen(100);
-	HAL_Delay(100);
-	npxPort_SetGreen(150);
-	HAL_Delay(100);
-	npxPort_SetGreen(200);
-	HAL_Delay(100);
-	npxPort_SetGreen(250);
-	HAL_Delay(100);
+		npxPort_SetGreen(0);
+		HAL_Delay(100);
+		npxPort_SetGreen(50);
+		HAL_Delay(100);
+		npxPort_SetGreen(100);
+		HAL_Delay(100);
+		npxPort_SetGreen(150);
+		HAL_Delay(100);
+		npxPort_SetGreen(200);
+		HAL_Delay(100);
+		npxPort_SetGreen(250);
+		HAL_Delay(100);
 
-	npxPort_SetBlue(0);
-	HAL_Delay(100);
-	npxPort_SetBlue(50);
-	HAL_Delay(100);
-	npxPort_SetBlue(100);
-	HAL_Delay(100);
-	npxPort_SetBlue(150);
-	HAL_Delay(100);
-	npxPort_SetBlue(200);
-	HAL_Delay(100);
-	npxPort_SetBlue(250);
-	HAL_Delay(100);
+		npxPort_SetBlue(0);
+		HAL_Delay(100);
+		npxPort_SetBlue(50);
+		HAL_Delay(100);
+		npxPort_SetBlue(100);
+		HAL_Delay(100);
+		npxPort_SetBlue(150);
+		HAL_Delay(100);
+		npxPort_SetBlue(200);
+		HAL_Delay(100);
+		npxPort_SetBlue(250);
+		HAL_Delay(100);
 
-	npxPort_ClearLEDs();
-	HAL_Delay(100);
+		npxPort_ClearLEDs();
+		HAL_Delay(100);
+	}
 }
 
 static void DMA_Init(void)

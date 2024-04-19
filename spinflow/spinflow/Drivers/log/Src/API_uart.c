@@ -16,16 +16,16 @@
 /* UART handler declaration */
 UART_HandleTypeDef UartHandle;
 
-static const char motd[] =
-		"\n\r+-+-+-+-+-+-+-+-+-+-+ +-+ +-+-+-+-+-+ +-+-+-+-+-+\n\r|C|E|S|E|2|2|/|P|d|M| |>| |M|a|r|c|o| |R|o|l|o|n|\n\r+-+-+-+-+-+-+-+-+-+-+ +-+ +-+-+-+-+-+ +-+-+-+-+-+\n\r\n\r";
-static const char config[] = "\n\rUART config: 9600bps 8N1\n\r";
+//static const char motd[] =
+//		"\n\r+-+-+-+-+-+-+-+-+-+-+ +-+ +-+-+-+-+-+ +-+-+-+-+-+\n\r|C|E|S|E|2|2|/|P|d|M| |>| |M|a|r|c|o| |R|o|l|o|n|\n\r+-+-+-+-+-+-+-+-+-+-+ +-+ +-+-+-+-+-+ +-+-+-+-+-+\n\r\n\r";
+//static const char config[] = "\n\rUART config: 9600bps 8N1\n\r";
 
 /* Private function prototypes -----------------------------------------------*/
 
 /**
  * @brief Prints UART config
  */
-static void uartPrintConfig();
+//static void uartPrintConfig();
 
 /**
  * @brief UART error handler
@@ -66,7 +66,7 @@ bool_t uartInit()
 	}
 	else
 	{
-		uartPrintConfig();
+		//uartPrintConfig();
 		return true;
 	}
 }
@@ -97,11 +97,11 @@ void uartReceiveStringSize(uint8_t *pstring, uint16_t size)
 	}
 }
 
-static void uartPrintConfig()
-{
-	uartSendString((uint8_t*) motd);
-	uartSendString((uint8_t*) config);
-}
+//static void uartPrintConfig()
+//{
+//	uartSendString((uint8_t*) motd);
+//	uartSendString((uint8_t*) config);
+//}
 
 static void uartErrorHandler()
 {

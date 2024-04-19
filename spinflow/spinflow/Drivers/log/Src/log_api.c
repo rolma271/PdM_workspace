@@ -87,6 +87,17 @@ bool_t log_SendString(logType_t logType, char *pstring)
 
 static void log_StartMsg()
 {
-	log_SendString(LOG_APP_INFO, DEVICE_NAME);
-	log_SendString(LOG_APP_INFO, DEVICE_FIRMWARE_VERSION);
+	// log start
+	uartSendString((uint8_t*) "<Log Start!>\n\r");
+
+	//device name
+	uartSendString((uint8_t*) "<Device Name: ");
+	uartSendString((uint8_t*) DEVICE_NAME);
+	uartSendString((uint8_t*) ">\n\r");
+
+	// device version
+	uartSendString((uint8_t*) "<Device Version: ");
+	uartSendString((uint8_t*) DEVICE_FIRMWARE_VERSION);
+	uartSendString((uint8_t*) ">\n\r");
+
 }

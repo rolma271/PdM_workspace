@@ -46,15 +46,37 @@
 #define IMU_GYRO_CAL_POINTS		10
 
 /**
+ * @brief Scale factor for accelerometer at ±2g, ±4g, ±8g or ±16g full-scale range.
+ *
+ * This values arre used to convert raw accelerometer outputs to g when the sensor is set to
+ * ±2g, ±4g, ±8g or ±16g full-scale range.
+ */
+#define ACC_FSR_2G_FACTOR 16384.0
+#define ACC_FSR_4G_FACTOR 8192.0
+#define ACC_FSR_8G_FACTOR 4096.0
+#define ACC_FSR_16G_FACTOR 2048.0
+
+/**
+ * @brief Scale factor for gyroscope at ±250°/s, ±500°/s, ±1000°/s or ±2000°/s full-scale range.
+ *
+ * Defines the conversion factor for raw gyroscope data when the sensor is configured to a full-scale range of
+ * ±250°/s, ±500°/s, ±1000°/s or ±2000°/s.
+ */
+#define GYR_FSR_250DPS_FACTOR 131.0
+#define GYR_FSR_500DPS_FACTOR 65.5
+#define GYR_FSR_1000DPS_FACTOR 32.8
+#define GYR_FSR_2000DPS_FACTOR 16.4
+
+/**
  * @enum gyroscopeFullScaleRange
  * @brief Enumerations for gyroscope full scale ranges.
  */
 enum gyroscopeFullScaleRange
 {
-	GFSR_250DPS, /*!< Full scale range ±250 degrees per second */
-	GFSR_500DPS, /*!< Full scale range ±500 degrees per second */
-	GFSR_1000DPS, /*!< Full scale range ±1000 degrees per second */
-	GFSR_2000DPS /*!< Full scale range ±2000 degrees per second */
+	GYR_FSR_250DPS, /*!< Full scale range ±250 degrees per second */
+	GYR_FSR_500DPS, /*!< Full scale range ±500 degrees per second */
+	GYR_FSR_1000DPS, /*!< Full scale range ±1000 degrees per second */
+	GYR_FSR_2000DPS /*!< Full scale range ±2000 degrees per second */
 };
 
 /**
@@ -63,10 +85,10 @@ enum gyroscopeFullScaleRange
  */
 enum accelerometerFullScaleRange
 {
-	AFSR_2G, /*!< Full scale range ±2g */
-	AFSR_4G, /*!< Full scale range ±4g */
-	AFSR_8G, /*!< Full scale range ±8g */
-	AFSR_16G /*!< Full scale range ±16g */
+	ACC_FSR_2G, /*!< Full scale range ±2g */
+	ACC_FSR_4G, /*!< Full scale range ±4g */
+	ACC_FSR_8G, /*!< Full scale range ±8g */
+	ACC_FSR_16G /*!< Full scale range ±16g */
 };
 
 /**
@@ -213,7 +235,7 @@ static void Error_Handler(void);
 bool imuPort_Init()
 {
 	I2C1_Init();
-	if (imuPort_begin(AFSR_4G, GFSR_500DPS))
+	if (imuPort_begin(ACC_FSR_4G, GYR_FSR_500DPS))
 	{
 		BSP_LED_Off(LED_IMU);
 		return true;
@@ -327,7 +349,6 @@ static bool imuPort_begin(uint8_t accScale, uint8_t gyroScale)
 
 static void imuPort_readRawData()
 {
-	// Init buffer
 	uint8_t buffer[14];
 
 	// Subroutine for reading the raw data
@@ -368,36 +389,36 @@ static void imuPort_writeAccFullScaleRange(uint8_t accScale)
 	// Set the value
 	switch (accScale)
 	{
-	case AFSR_2G:
-		accScaleFactor = 16384.0;
+	case ACC_FSR_2G:
+		accScaleFactor = ACC_FSR_2G_FACTOR;
 		select = 0x00;
 		HAL_I2C_Mem_Write(&hi2c1, imu_i2cAddress << 1, ACCEL_CONFIG, 1, &select,
 				1, IMU_I2C_TIMEOUT_MS);
 		break;
 
-	case AFSR_4G:
-		accScaleFactor = 8192.0;
+	case ACC_FSR_4G:
+		accScaleFactor = ACC_FSR_4G_FACTOR;
 		select = 0x08;
 		HAL_I2C_Mem_Write(&hi2c1, imu_i2cAddress << 1, ACCEL_CONFIG, 1, &select,
 				1, IMU_I2C_TIMEOUT_MS);
 		break;
 
-	case AFSR_8G:
-		accScaleFactor = 4096.0;
+	case ACC_FSR_8G:
+		accScaleFactor = ACC_FSR_8G_FACTOR;
 		select = 0x10;
 		HAL_I2C_Mem_Write(&hi2c1, imu_i2cAddress << 1, ACCEL_CONFIG, 1, &select,
 				1, IMU_I2C_TIMEOUT_MS);
 		break;
 
-	case AFSR_16G:
-		accScaleFactor = 2048.0;
+	case ACC_FSR_16G:
+		accScaleFactor = ACC_FSR_16G_FACTOR;
 		select = 0x18;
 		HAL_I2C_Mem_Write(&hi2c1, imu_i2cAddress << 1, ACCEL_CONFIG, 1, &select,
 				1, IMU_I2C_TIMEOUT_MS);
 		break;
 
 	default:
-		accScaleFactor = 8192.0;
+		accScaleFactor = ACC_FSR_4G_FACTOR;
 		select = 0x08;
 		HAL_I2C_Mem_Write(&hi2c1, imu_i2cAddress << 1, ACCEL_CONFIG, 1, &select,
 				1, IMU_I2C_TIMEOUT_MS);
@@ -413,32 +434,32 @@ static void imuPort_writeGyroFullScaleRange(uint8_t gyroScale)
 	// Set the value
 	switch (gyroScale)
 	{
-	case GFSR_250DPS:
-		gyroScaleFactor = 131.0;
+	case GYR_FSR_250DPS:
+		gyroScaleFactor = GYR_FSR_250DPS_FACTOR;
 		select = 0x00;
 		HAL_I2C_Mem_Write(&hi2c1, imu_i2cAddress << 1, GYRO_CONFIG, 1, &select,
 				1, IMU_I2C_TIMEOUT_MS);
 		break;
-	case GFSR_500DPS:
-		gyroScaleFactor = 65.5;
+	case GYR_FSR_500DPS:
+		gyroScaleFactor = GYR_FSR_500DPS_FACTOR;
 		select = 0x08;
 		HAL_I2C_Mem_Write(&hi2c1, imu_i2cAddress << 1, GYRO_CONFIG, 1, &select,
 				1, IMU_I2C_TIMEOUT_MS);
 		break;
-	case GFSR_1000DPS:
-		gyroScaleFactor = 32.8;
+	case GYR_FSR_1000DPS:
+		gyroScaleFactor = GYR_FSR_1000DPS_FACTOR;
 		select = 0x10;
 		HAL_I2C_Mem_Write(&hi2c1, imu_i2cAddress << 1, GYRO_CONFIG, 1, &select,
 				1, IMU_I2C_TIMEOUT_MS);
 		break;
-	case GFSR_2000DPS:
-		gyroScaleFactor = 16.4;
+	case GYR_FSR_2000DPS:
+		gyroScaleFactor = GYR_FSR_2000DPS_FACTOR;
 		select = 0x18;
 		HAL_I2C_Mem_Write(&hi2c1, imu_i2cAddress << 1, GYRO_CONFIG, 1, &select,
 				1, IMU_I2C_TIMEOUT_MS);
 		break;
 	default:
-		gyroScaleFactor = 65.5;
+		gyroScaleFactor = GYR_FSR_500DPS_FACTOR;
 		select = 0x08;
 		HAL_I2C_Mem_Write(&hi2c1, imu_i2cAddress << 1, GYRO_CONFIG, 1, &select,
 				1, IMU_I2C_TIMEOUT_MS);

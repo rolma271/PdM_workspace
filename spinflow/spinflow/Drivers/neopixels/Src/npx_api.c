@@ -1,7 +1,9 @@
 /**
  ******************************************************************************
  * @file    npx_api.c
- * @author 	Marco Rolon
+ *
+ * @author 	Marco Rolón Radcenco
+ *
  * @brief   NeoPixels API
  ******************************************************************************
  */
@@ -9,7 +11,10 @@
 #include "npx_api.h"
 #include "npx_port.h"
 
-#define NPX_LED_VALUE 50
+/**
+ * @brief LED brightness
+ */
+#define NPX_LED_BRIGHTNESS 50
 
 void npx_Init()
 {
@@ -23,15 +28,15 @@ void npx_Clear()
 
 void npx_SetIdle()
 {
-	npxPort_SetGreen(NPX_LED_VALUE);
+	npxPort_SetGreen(NPX_LED_BRIGHTNESS);
 }
 
 void npx_SetPositive()
 {
-	npxPort_SetRed(NPX_LED_VALUE);
+	npxPort_SetRed(NPX_LED_BRIGHTNESS);
 }
 
 void npx_SetNegative()
 {
-	npxPort_SetBlue(NPX_LED_VALUE);
+	npxPort_SetBlue(NPX_LED_BRIGHTNESS);
 }

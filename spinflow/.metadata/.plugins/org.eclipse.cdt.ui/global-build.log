@@ -1,14 +1,33 @@
-16:23:29 **** Incremental Build of configuration Debug for project proyecto ****
+21:27:16 **** Incremental Build of configuration Debug for project spinflow ****
 make -j4 all 
-arm-none-eabi-gcc "../neopixels/Src/npx_port.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DSTM32 -DSTM32F429ZITx -DSTM32F4 -DNUCLEO_F429ZI -DUSE_HAL_DRIVER -DSTM32F429xx -c -I"C:/Users/Sandbox/Documents/proyecto/Drivers/STM32F4xx_HAL_Driver/Inc" -I"C:/Users/Sandbox/Documents/proyecto/Drivers/CMSIS/Include" -I"C:/Users/Sandbox/Documents/proyecto/Drivers/CMSIS/Device/ST/STM32F4xx/Include" -I"C:/Users/Sandbox/Documents/proyecto/Drivers/BSP/STM32F4xx_Nucleo_144" -I"C:/Users/Sandbox/Documents/proyecto/Drivers/Core/Inc" -I"C:/Users/Sandbox/Documents/proyecto/Drivers/API/Inc" -I"C:/Users/Sandbox/Documents/proyecto/imu/Inc" -I"C:/Users/Sandbox/Documents/proyecto/neopixels/Inc" -I"C:/Users/Sandbox/Documents/proyecto/Inc" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"neopixels/Src/npx_port.d" -MT"neopixels/Src/npx_port.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "neopixels/Src/npx_port.o"
-../neopixels/Src/npx_port.c: In function 'MX_TIM1_Init':
-../neopixels/Src/npx_port.c:163:3: warning: implicit declaration of function 'HAL_TIM_MspPostInit'; did you mean 'HAL_TIM_IC_MspInit'? [-Wimplicit-function-declaration]
-  163 |   HAL_TIM_MspPostInit(&htim1);
-      |   ^~~~~~~~~~~~~~~~~~~
-      |   HAL_TIM_IC_MspInit
-arm-none-eabi-gcc -o "proyecto.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\Sandbox\Documents\proyecto\STM32F429ZITX_FLASH.ld" --specs=nosys.specs -Wl,-Map="proyecto.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
-C:/ST/STM32CubeIDE_1.14.1/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.11.3.rel1.win32_1.1.100.202309141235/tools/bin/../lib/gcc/arm-none-eabi/11.3.1/../../../../arm-none-eabi/bin/ld.exe: ./neopixels/Src/npx_port.o: in function `MX_TIM1_Init':
-C:/Users/Sandbox/Documents/proyecto/Debug/../neopixels/Src/npx_port.c:163: undefined reference to `HAL_TIM_MspPostInit'
-collect2.exe: error: ld returned 1 exit status
-make: *** [makefile:71: proyecto.elf] Error 1
-"make -j4 all" terminated with exit code 2. Build might be incomplete.
+arm-none-eabi-gcc "../Drivers/neopixels/Src/npx_api.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F429xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I"C:/Users/Sandbox/Documents/spinflow/spinflow/Drivers/neopixels/Inc" -I"C:/Users/Sandbox/Documents/spinflow/spinflow/Drivers/imu/Inc" -I"C:/Users/Sandbox/Documents/spinflow/spinflow/Drivers/BSP/STM32F4xx_Nucleo_144/Inc" -I"C:/Users/Sandbox/Documents/spinflow/spinflow/Drivers/delay/Inc" -I"C:/Users/Sandbox/Documents/spinflow/spinflow/Drivers/log/Inc" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Drivers/neopixels/Src/npx_api.d" -MT"Drivers/neopixels/Src/npx_api.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Drivers/neopixels/Src/npx_api.o"
+arm-none-eabi-gcc "../Drivers/neopixels/Src/npx_port.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F429xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I"C:/Users/Sandbox/Documents/spinflow/spinflow/Drivers/neopixels/Inc" -I"C:/Users/Sandbox/Documents/spinflow/spinflow/Drivers/imu/Inc" -I"C:/Users/Sandbox/Documents/spinflow/spinflow/Drivers/BSP/STM32F4xx_Nucleo_144/Inc" -I"C:/Users/Sandbox/Documents/spinflow/spinflow/Drivers/delay/Inc" -I"C:/Users/Sandbox/Documents/spinflow/spinflow/Drivers/log/Inc" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Drivers/neopixels/Src/npx_port.d" -MT"Drivers/neopixels/Src/npx_port.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Drivers/neopixels/Src/npx_port.o"
+arm-none-eabi-gcc "../Drivers/log/Src/log_api.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F429xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I"C:/Users/Sandbox/Documents/spinflow/spinflow/Drivers/neopixels/Inc" -I"C:/Users/Sandbox/Documents/spinflow/spinflow/Drivers/imu/Inc" -I"C:/Users/Sandbox/Documents/spinflow/spinflow/Drivers/BSP/STM32F4xx_Nucleo_144/Inc" -I"C:/Users/Sandbox/Documents/spinflow/spinflow/Drivers/delay/Inc" -I"C:/Users/Sandbox/Documents/spinflow/spinflow/Drivers/log/Inc" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Drivers/log/Src/log_api.d" -MT"Drivers/log/Src/log_api.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Drivers/log/Src/log_api.o"
+arm-none-eabi-gcc "../Drivers/imu/Src/imu_api.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F429xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I"C:/Users/Sandbox/Documents/spinflow/spinflow/Drivers/neopixels/Inc" -I"C:/Users/Sandbox/Documents/spinflow/spinflow/Drivers/imu/Inc" -I"C:/Users/Sandbox/Documents/spinflow/spinflow/Drivers/BSP/STM32F4xx_Nucleo_144/Inc" -I"C:/Users/Sandbox/Documents/spinflow/spinflow/Drivers/delay/Inc" -I"C:/Users/Sandbox/Documents/spinflow/spinflow/Drivers/log/Inc" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Drivers/imu/Src/imu_api.d" -MT"Drivers/imu/Src/imu_api.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Drivers/imu/Src/imu_api.o"
+arm-none-eabi-gcc "../Drivers/imu/Src/imu_port.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F429xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I"C:/Users/Sandbox/Documents/spinflow/spinflow/Drivers/neopixels/Inc" -I"C:/Users/Sandbox/Documents/spinflow/spinflow/Drivers/imu/Inc" -I"C:/Users/Sandbox/Documents/spinflow/spinflow/Drivers/BSP/STM32F4xx_Nucleo_144/Inc" -I"C:/Users/Sandbox/Documents/spinflow/spinflow/Drivers/delay/Inc" -I"C:/Users/Sandbox/Documents/spinflow/spinflow/Drivers/log/Inc" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Drivers/imu/Src/imu_port.d" -MT"Drivers/imu/Src/imu_port.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Drivers/imu/Src/imu_port.o"
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F429xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I"C:/Users/Sandbox/Documents/spinflow/spinflow/Drivers/neopixels/Inc" -I"C:/Users/Sandbox/Documents/spinflow/spinflow/Drivers/imu/Inc" -I"C:/Users/Sandbox/Documents/spinflow/spinflow/Drivers/BSP/STM32F4xx_Nucleo_144/Inc" -I"C:/Users/Sandbox/Documents/spinflow/spinflow/Drivers/delay/Inc" -I"C:/Users/Sandbox/Documents/spinflow/spinflow/Drivers/log/Inc" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "spinflow.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\Sandbox\Documents\spinflow\spinflow\STM32F429ZITX_FLASH.ld" --specs=nosys.specs -Wl,-Map="spinflow.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: spinflow.elf
+ 
+arm-none-eabi-size  spinflow.elf 
+arm-none-eabi-objdump -h -S spinflow.elf  > "spinflow.list"
+   text	   data	    bss	    dec	    hex	filename
+  25560	     32	   3024	  28616	   6fc8	spinflow.elf
+Finished building: default.size.stdout
+ 
+Finished building: spinflow.list
+ 
+21:27:23 **** Incremental Build of configuration Debug for project spinflow ****
+make -j4 all 
+arm-none-eabi-size  spinflow.elf 
+   text	   data	    bss	    dec	    hex	filename
+  25560	     32	   3024	  28616	   6fc8	spinflow.elf
+Finished building: default.size.stdout
+ 
+21:27:51 **** Incremental Build of configuration Debug for project spinflow ****
+make -j4 all 
+arm-none-eabi-size  spinflow.elf 
+   text	   data	    bss	    dec	    hex	filename
+  25560	     32	   3024	  28616	   6fc8	spinflow.elf
+Finished building: default.size.stdout
+ 

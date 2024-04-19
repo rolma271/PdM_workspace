@@ -1,5 +1,5 @@
-../Drivers/neopixels/Src/npx_api.c:14:6:npx_Init	1
-../Drivers/neopixels/Src/npx_api.c:19:6:npx_Clear	1
-../Drivers/neopixels/Src/npx_api.c:24:6:npx_SetIdle	1
-../Drivers/neopixels/Src/npx_api.c:29:6:npx_SetPositive	1
-../Drivers/neopixels/Src/npx_api.c:34:6:npx_SetNegative	1
+../Drivers/neopixels/Src/npx_api.c:19:6:npx_Init	1
+../Drivers/neopixels/Src/npx_api.c:24:6:npx_Clear	1
+../Drivers/neopixels/Src/npx_api.c:29:6:npx_SetIdle	1
+../Drivers/neopixels/Src/npx_api.c:34:6:npx_SetPositive	1
+../Drivers/neopixels/Src/npx_api.c:39:6:npx_SetNegative	1

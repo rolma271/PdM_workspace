@@ -4,8 +4,8 @@
 ../Drivers/neopixels/Src/npx_port.c:126:6:npxPort_SetGreen	2
 ../Drivers/neopixels/Src/npx_port.c:136:6:npxPort_SetBlue	2
 ../Drivers/neopixels/Src/npx_port.c:146:6:npxPort_SetLEDs	4
-../Drivers/neopixels/Src/npx_port.c:175:13:TIM1_Init	7
-../Drivers/neopixels/Src/npx_port.c:238:6:npxPort_initialSequence	1
-../Drivers/neopixels/Src/npx_port.c:286:13:DMA_Init	1
-../Drivers/neopixels/Src/npx_port.c:299:6:HAL_TIM_PWM_PulseFinishedCallback	1
-../Drivers/neopixels/Src/npx_port.c:304:13:Error_Handler	1
+../Drivers/neopixels/Src/npx_port.c:173:13:TIM1_Init	7
+../Drivers/neopixels/Src/npx_port.c:236:6:npxPort_initialSequence	1
+../Drivers/neopixels/Src/npx_port.c:287:13:DMA_Init	1
+../Drivers/neopixels/Src/npx_port.c:300:6:HAL_TIM_PWM_PulseFinishedCallback	1
+../Drivers/neopixels/Src/npx_port.c:305:13:Error_Handler	1
